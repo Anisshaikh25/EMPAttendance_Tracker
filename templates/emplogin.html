@@ -1,79 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Employee Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #4e73df, #1cc88a);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .login-container {
-            background: white;
-            padding: 40px;
-            width: 350px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+<title>Employee Login</title>
 
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #333;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+<style>
 
-        .form-group label {
-            font-size: 14px;
-            font-weight: bold;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+/* Background */
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#4e73df,#1cc88a);
+    padding:20px;
+}
 
-        .login-btn {
-            width: 100%;
-            padding: 10px;
-            background: #4e73df;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+/* Glass Card */
+.login-container{
+    width:100%;
+    max-width:380px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border-radius:15px;
+    padding:35px 30px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    color:white;
+}
 
-        .login-btn:hover {
-            background: #2e59d9;
-        }
+/* Title */
+.login-container h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-weight:600;
+}
 
-        .footer-text {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 13px;
-        }
-    </style>
+/* Form */
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    font-size:14px;
+    display:block;
+    margin-bottom:6px;
+}
+
+/* Inputs */
+.form-group input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+    background:rgba(255,255,255,0.9);
+    transition:0.3s;
+}
+
+.form-group input:focus{
+    transform:scale(1.02);
+    box-shadow:0 0 8px rgba(255,255,255,0.6);
+}
+
+/* Button */
+.login-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:white;
+    color:#4e73df;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#f1f1f1;
+    transform:translateY(-2px);
+}
+
+/* Footer */
+.footer-text{
+    text-align:center;
+    margin-top:18px;
+    font-size:13px;
+    opacity:0.9;
+}
+
+/* Responsive */
+@media (max-width:480px){
+
+    .login-container{
+        padding:25px 20px;
+    }
+
+    .login-container h2{
+        font-size:22px;
+    }
+
+    .form-group input{
+        padding:11px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="login-container">
+
     <h2>Employee Login</h2>
 
     <form method="POST">
@@ -95,6 +145,7 @@
     <div class="footer-text">
         Attendance Management System
     </div>
+
 </div>
 
 </body>
