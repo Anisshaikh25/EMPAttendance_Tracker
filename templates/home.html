@@ -1,1 +1,187 @@
-<h1>HII THIS IS HOME PAGE</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Employee Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+/* Layout */
+body{
+    display:flex;
+    min-height:100vh;
+    background:#f4f6f9;
+}
+
+/* Sidebar */
+.sidebar{
+    width:240px;
+    background:#ffffff;
+    border-right:1px solid #e5e5e5;
+    padding:25px 20px;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+    color:#2c3e50;
+    font-size:20px;
+}
+
+/* Menu */
+.menu a{
+    display:block;
+    padding:12px;
+    margin-bottom:8px;
+    text-decoration:none;
+    color:#444;
+    border-radius:6px;
+    transition:0.2s;
+}
+
+.menu a:hover{
+    background:#4e73df;
+    color:white;
+}
+
+/* Main Content */
+.main{
+    flex:1;
+    padding:30px;
+}
+
+/* Top Bar */
+.topbar{
+    background:white;
+    padding:15px 20px;
+    border-radius:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom:25px;
+}
+
+.topbar h3{
+    color:#2c3e50;
+}
+
+/* Card */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    max-width:500px;
+}
+
+/* Attendance Buttons */
+.attendance-btn{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+    font-weight:500;
+    transition:0.2s;
+}
+
+.checkin{
+    background:#1cc88a;
+    color:white;
+}
+
+.checkin:hover{
+    background:#17a673;
+}
+
+.checkout{
+    background:#e74a3b;
+    color:white;
+}
+
+.checkout:hover{
+    background:#c0392b;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        display:flex;
+        justify-content:space-around;
+        border-right:none;
+        border-bottom:1px solid #ddd;
+    }
+
+    .menu a{
+        margin:0;
+        padding:10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>AMS</h2>
+
+    <div class="menu">
+        <a href="#">Dashboard</a>
+        <a href="#">My Attendance</a>
+        <a href="#">Profile</a>
+        <a href="#">Logout</a>
+    </div>
+</div>
+
+<!-- Main Area -->
+<div class="main">
+
+    <div class="topbar">
+        <h3>Welcome, {{ request.user.username }}</h3>
+    </div>
+
+    <div class="card">
+        <h3>Today's Attendance</h3>
+        <p style="color:#666; margin-top:5px;">
+            Mark your attendance using the buttons below.
+        </p>
+
+        <!-- Django Forms -->
+        <form method="POST" action="#">
+            {% csrf_token %}
+            <button class="attendance-btn checkin">
+                ✅ Check In
+            </button>
+        </form>
+
+        <form method="POST" action="#">
+            {% csrf_token %}
+            <button class="attendance-btn checkout">
+                ⏹ Check Out
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
