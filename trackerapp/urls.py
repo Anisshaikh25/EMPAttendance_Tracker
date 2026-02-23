@@ -5,6 +5,6 @@ from .import views
 
 urlpatterns=[
     
-    path('',views.home,name='home'),
-    path('emplogin/',views.home,name='emplogin'),
+    path('',views.employee_login,name='emplogin'),
+    path('dashboard/',views.home,name='home'),
 ]
