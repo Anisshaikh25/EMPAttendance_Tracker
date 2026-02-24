@@ -133,8 +133,38 @@ body{
         padding:10px;
     }
 }
+.calendar-card{
+    max-width:100%;
+    width:100%;
+}
+.dashboard-grid{
+    display:grid;
+    grid-template-columns: 350px 1fr;
+    gap:25px;
+}
 
+@media(max-width:900px){
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+}
+.attendance-btn{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+    font-weight:500;
+    transition:0.2s;
+}
 </style>
+
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
 </head>
 
 <body>
@@ -158,30 +188,77 @@ body{
         <h3>Welcome, {{ request.user.username }}</h3>
     </div>
 
-    <div class="card">
-        <h3>Today's Attendance</h3>
-        <p style="color:#666; margin-top:5px;">
-            Mark your attendance using the buttons below.
-        </p>
+        <div class="dashboard-grid">
 
-        <!-- Django Forms -->
-        <form method="POST" action="#">
-            {% csrf_token %}
-            <button class="attendance-btn checkin">
-                ✅ Check In
-            </button>
-        </form>
+            <!-- Attendance Buttons -->
+            <div class="card">
+                <h3>Quick Actions</h3>
+                <p style="color:#666; margin-top:5px;">
+                    Use the buttons below to quickly mark your attendance.
+                </p>
 
-        <form method="POST" action="#">
-            {% csrf_token %}
-            <button class="attendance-btn checkout">
-                ⏹ Check Out
-            </button>
-        </form>
+                <!-- Check In -->
+                <form method="POST" action="{% url 'check_in' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="attendance-btn checkin">
+                        ✅ Check In
+                    </button>
+                </form>
 
-    </div>
+                <!-- Check Out -->
+                <form method="POST" action="{% url 'check_out' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="attendance-btn checkout">
+                        ⏹ Check Out
+                    </button>
+                </form>
+            </div>
+
+            <!-- Calendar -->
+            <div class="card calendar-card">
+                <h3>Attendance Calendar</h3>
+                <div id="calendar"></div>
+            </div>
+
+        </div>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+    initialView: 'dayGridMonth',
+
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek'
+    },
+
+    height: "auto",
+    expandRows: true,
+
+        events: [
+            {
+                title: 'Present',
+                start: '2026-02-20',
+                color: '#1cc88a'
+            },
+            {
+                title: 'Absent',
+                start: '2026-02-18',
+                color: '#e74a3b'
+            }
+        ]
+    });
+
+    calendar.render();
+});
+</script>
 
 </body>
 </html>
